@@ -17,12 +17,18 @@ RUN cd nginx && git checkout ${NGINX_VERSION} && ./auto/configure \
     make && \
     make install
 
+COPY ${CONF} /etc/nginx/conf/nginx.conf
+
+RUN chmod 550 /usr/local/sbin/nginx
+RUN chmod 770 /etc/nginx/conf
+RUN chmod 660 /etc/nginx/conf/nginx.conf
+RUN chmod 750 /var/log/nginx
+RUN chmod 1600 /etc/nginx/html
+
 VOLUME ["/var/log/nginx"]
 
 WORKDIR /etc/nginx
 
 EXPOSE 80 443
-
-COPY ${CONF} /etc/nginx/conf/nginx.conf
 
 CMD ["nginx", "-g", "daemon off;"]
