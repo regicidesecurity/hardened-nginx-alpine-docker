@@ -1,8 +1,11 @@
 services:
   nginx:
-    build: nginx
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - CONF=nginx.conf
+        - HTML=html
     ports:
       - "9999:80"
-    volumes:
-      - ./html:/etc/nginx/html
     restart: always

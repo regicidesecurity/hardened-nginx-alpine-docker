@@ -1,3 +1,1 @@
-# zerotrust-sidecar
- 
-docker rmi -f $(docker images -aq)
+# Hardened Nginx Alpine Image
